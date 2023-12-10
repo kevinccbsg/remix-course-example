@@ -1,0 +1,12 @@
+#content {
+  text-align: center;
+  color: var(--color-primary-10);
+}
+
+#cta {
+  margin-top: 2rem;
+}
+
+#cta a:hover {
+  background-color: var(--color-secondary-200);
+}
