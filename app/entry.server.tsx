@@ -24,10 +24,6 @@ export default async function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
-  console.log('????');
-  console.log(responseStatusCode);
-  console.log(remixContext);
-  
   let callbackName = isbot(request.headers.get("user-agent"))
     ? "onAllReady"
     : "onShellReady";

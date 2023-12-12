@@ -1,7 +1,9 @@
 import { json, type LinksFunction, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
+import { ClientOnly } from "~/components/ClientOnly";
 import LinkComponent from "~/components/Link/Link";
+import { Map } from "~/components/Map/Map.client";
 import i18next from "~/i18next.server";
 
 
@@ -10,6 +12,10 @@ import styles from "~/styles/home.css";
 export const links: LinksFunction = () => (
   [
     { rel: 'stylesheet', href: styles },
+    {
+      rel: "stylesheet",
+      href: "https://unpkg.com/leaflet@1.8.0/dist/leaflet.css",
+    },
   ]
 );
 
@@ -40,6 +46,16 @@ export default function Index() {
       <p id="cta">
         <LinkComponent />
       </p>
+      <ClientOnly
+        fallback={
+          <div
+            id="skeleton"
+            style={{ height: '500px', background: "#d1d1d1" }}
+          />
+        }
+      >
+        {() => <Map />}
+      </ClientOnly>
     </main>
   );
 }

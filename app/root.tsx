@@ -37,11 +37,3 @@ export default function App() {
     </html>
   );
 }
-
-export function ErrorBoundary(){
-  const error = useRouteError();
-  if (isRouteErrorResponse(error)) {
-    return <div>Not found</div>
-  }
-  return <div>Other error??</div>
-}
