@@ -30,6 +30,7 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^13.5.0",
     "react-leaflet": "^4.2.1",
+    "react-player": "^2.13.0",
     "remix-i18next": "^5.4.0",
     "remix-utils": "^7.3.0",
     "shx": "^0.3.4"

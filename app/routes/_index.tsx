@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import { ClientOnly } from "~/components/ClientOnly";
 import LinkComponent from "~/components/Link/Link";
 import { Map } from "~/components/Map/Map.client";
+import { PlayerVideo } from "~/components/Player/Player";
 import i18next from "~/i18next.server";
-
 
 import styles from "~/styles/home.css";
 
@@ -46,6 +46,7 @@ export default function Index() {
       <p id="cta">
         <LinkComponent />
       </p>
+      <PlayerVideo />
       <ClientOnly
         fallback={
           <div

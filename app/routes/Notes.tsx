@@ -9,12 +9,12 @@ import { getStoredNotes, storeNotes } from "~/data/notes.server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const allNotes = await getStoredNotes();
-  if (allNotes.length === 0) {
-    throw json({ message: 'Could not find notes' }, {
-      status: 404,
-      statusText: 'Not Found',
-    });
-  }
+  // if (allNotes.length === 0) {
+  //   throw json({ message: 'Could not find notes' }, {
+  //     status: 404,
+  //     statusText: 'Not Found',
+  //   });
+  // }
   return json({ notes: allNotes });
 };
 
