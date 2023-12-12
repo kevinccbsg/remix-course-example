@@ -6,6 +6,8 @@ export default {
   serverDependenciesToBundle: [
     "remix-i18next",
     "accept-language-parser",
+    /^@mui\/material\/.*/,
+    /^@mui\/base\/.*/,
   ],
   // This works out of the box with the Netlify adapter, but you can
   // add your own custom config here if you want to.

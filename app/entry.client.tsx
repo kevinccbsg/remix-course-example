@@ -3,7 +3,7 @@
  * You are free to delete this file if you'd like to, but if you ever want it revealed again, you can run `npx remix reveal` ✨
  * For more information, see https://remix.run/file-conventions/entry.client
  */
-
+import * as React from 'react';
 import { RemixBrowser } from "@remix-run/react";
 import { startTransition, StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
@@ -14,8 +14,36 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import Backend from "i18next-http-backend";
 import { getInitialNamespaces } from "remix-i18next";
 
+import { CacheProvider } from '@emotion/react';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import ClientStyleContext from './src/ClientStyleContext';
+import createEmotionCache from './src/createEmotionCache';
+import theme from './src/theme';
+
+interface ClientCacheProviderProps {
+  children: React.ReactNode;
+}
+function ClientCacheProvider({ children }: ClientCacheProviderProps) {
+  const [cache, setCache] = React.useState(createEmotionCache());
+
+  const clientStyleContextValue = React.useMemo(
+    () => ({
+      reset() {
+        setCache(createEmotionCache());
+      },
+    }),
+    [],
+  );
+
+  return (
+    <ClientStyleContext.Provider value={clientStyleContextValue}>
+      <CacheProvider value={cache}>{children}</CacheProvider>
+    </ClientStyleContext.Provider>
+  );
+}
+
 async function hydrate() {
-  console.log('hydrate???');
   
   await i18next
     .use(initReactI18next) // Tell i18next to use the react-i18next plugin
@@ -41,9 +69,14 @@ async function hydrate() {
     hydrateRoot(
       document,
       <I18nextProvider i18n={i18next}>
-        <StrictMode>
-          <RemixBrowser />
-        </StrictMode>
+        <ClientCacheProvider>
+          <ThemeProvider theme={theme}>
+            <StrictMode>
+              <CssBaseline />
+              <RemixBrowser />
+            </StrictMode>
+          </ThemeProvider>
+        </ClientCacheProvider>
       </I18nextProvider>
     );
   });

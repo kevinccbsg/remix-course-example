@@ -1,6 +1,8 @@
 import { json, type LinksFunction, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
+import Typography from '@mui/material/Typography';
+import Switch from '@mui/material/Switch';
 import { ClientOnly } from "~/components/ClientOnly";
 import LinkComponent from "~/components/Link/Link";
 import { Map } from "~/components/Map/Map.client";
@@ -40,9 +42,13 @@ export default function Index() {
 
   return (
     <main id="content">
+      <Typography variant="h4" component="h1" gutterBottom>
+        Material UI Remix in TypeScript example
+      </Typography>
       <h1>A better way ofkeeping track of your notes</h1>
       <h2>{t('greeting')} - {locale}</h2>
       <p>Lorem ipsu   m dolor sit amet consectetur!</p>
+      <Switch inputProps={{ "aria-label": 'switch demo' }} defaultChecked />
       <p id="cta">
         <LinkComponent />
       </p>
