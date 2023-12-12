@@ -52,7 +52,6 @@ export default function Index() {
       <p id="cta">
         <LinkComponent />
       </p>
-      <PlayerVideo />
       <ClientOnly
         fallback={
           <div
